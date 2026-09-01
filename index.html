@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Personal Site — Software &amp; ML Engineering</title>
+  <meta
+    name="description"
+    content="Personal site and project index — software engineering, machine learning, and AI."
+  />
+
+  <!--
+    Type: Space Grotesk (display/headings), Inter (body copy),
+    JetBrains Mono (data — tags, dates, metrics, status readout).
+    Loaded from Google Fonts; swap for self-hosted files if you'd rather
+    not depend on an external request.
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- ===================================================================
+       HEADER
+       Brand name is filled in by main.js from SITE_CONFIG.name so it
+       can't drift out of sync with the hero heading.
+       =================================================================== -->
+  <header class="site-header wrap">
+    <a href="#top" class="brand" id="brand-name">/* name */</a>
+    <nav class="site-nav">
+      <a href="#projects">Projects</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle dark mode">
+        dark mode
+      </button>
+    </nav>
+  </header>
+
+  <!-- ===================================================================
+       HERO
+       Left: headline, tagline, meta line, links — all from SITE_CONFIG.
+       Right: the "status panel", a small terminal-style readout that is
+       the one deliberately bold element in the design.
+       =================================================================== -->
+  <section class="hero wrap" id="top">
+    <div>
+      <h1 class="hero-name" id="hero-name"></h1>
+      <p class="hero-role" id="hero-role"></p>
+      <p class="hero-tagline" id="hero-tagline"></p>
+      <div class="hero-meta">
+        <span id="hero-location"></span>
+      </div>
+      <div class="hero-links" id="hero-links"></div>
+    </div>
+
+    <!-- status-panel's rows are built entirely in JS from
+         SITE_CONFIG.status so it stays a live reflection of data.js -->
+    <div class="status-panel" id="status-panel" aria-label="Current status"></div>
+  </section>
+
+  <!-- ===================================================================
+       PROJECTS
+       The dynamic core of the page. Tag chips are derived from whatever
+       tags exist in PROJECTS (js/data.js) — add a project with a new tag
+       and a filter chip for it appears automatically. Rows expand in
+       place instead of opening a modal.
+       =================================================================== -->
+  <section class="section wrap" id="projects">
+    <h2 class="section-heading">Projects</h2>
+
+    <div class="projects-controls">
+      <div class="tag-filters" id="tag-filters" aria-label="Filter projects by tag"></div>
+      <div class="search-box">
+        <span aria-hidden="true">⌕</span>
+        <input
+          type="text"
+          id="project-search"
+          placeholder="Search projects…"
+          aria-label="Search projects"
+        />
+      </div>
+    </div>
+
+    <p class="result-count" id="result-count"></p>
+
+    <!-- Populated entirely by main.js's renderProjectRow() -->
+    <div class="project-list" id="project-list"></div>
+  </section>
+
+  <!-- ===================================================================
+       ABOUT
+       Bio paragraph + a skills table, both sourced from SITE_CONFIG.
+       =================================================================== -->
+  <section class="section wrap" id="about">
+    <h2 class="section-heading">About</h2>
+    <div class="about-grid">
+      <p id="about-bio"></p>
+      <table class="skills-table">
+        <thead>
+          <tr>
+            <th>Skill</th>
+            <th>Category</th>
+            <th>Level</th>
+          </tr>
+        </thead>
+        <tbody id="skills-tbody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       CONTACT
+       Only renders the contact methods that are actually filled in.
+       =================================================================== -->
+  <section class="section wrap" id="contact" style="border-bottom: none;">
+    <h2 class="section-heading">Contact</h2>
+    <div class="contact-list" id="contact-list"></div>
+  </section>
+
+  <footer class="site-footer wrap">
+    © <span id="year"></span> — built with plain HTML, CSS and JavaScript. No framework, no build step.
+  </footer>
+
+  <!-- data.js must load before main.js: main.js reads SITE_CONFIG/PROJECTS
+       from it at DOMContentLoaded. -->
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
