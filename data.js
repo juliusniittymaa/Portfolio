@@ -24,7 +24,7 @@
 // -----------------------------------------------------------------------------
 const SITE_CONFIG = {
   // Shown big, top-left of the hero section.
-  name: "[Your Name]",
+  name: "Julius Niittymaa",
 
   // Shown directly under your name as a short role/title.
   role: "[Machine Learning Engineer / AI Software Engineer]",
